@@ -39,6 +39,7 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.9.RELEASE" />
+          <element id="library" level="project" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
