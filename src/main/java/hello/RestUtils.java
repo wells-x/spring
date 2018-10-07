@@ -30,13 +30,13 @@ public class RestUtils {
             if (Base64.isBase64(param)) {
                 param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
             }
-            System.out.println("param:" + param);
+//            System.out.println("param:" + param);
         } else {
             param = getBodyData(request);
             if (Base64.isBase64(param)) {
                 param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
             }
-            System.out.println("param:" + param);
+//            System.out.println("param:" + param);
         }
         return param;
     }

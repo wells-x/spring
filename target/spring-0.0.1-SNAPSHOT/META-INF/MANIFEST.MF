@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: wells_xq
-Implementation-Vendor-Id: com.wells
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8.0_151
-Main-Class: ${start-class}
-
