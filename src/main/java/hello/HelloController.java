@@ -18,8 +18,8 @@ public class HelloController {
 //        HttpHeaders responseHeaders = new HttpHeaders();
 //        responseHeaders.setContentType(MediaType.valueOf("text/plain;charset='utf-8'"));
         System.out.println("Success");
-        System.out.println(username);
-        System.out.println(password);
+//        System.out.println(username);
+//        System.out.println(password);
         JSONObject jsonObject = new JSONObject(),
                 data = new JSONObject();
         JSONArray jsonArray = new JSONArray();
