@@ -3,17 +3,17 @@ package hello.dao.model;
 import java.sql.*;
 
 public class MySQLDeme {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/java";
-    static final String USER = "wells";
-    static final String PASS = "991005214";
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/java";
+    private static final String USER = "wells";
+    private static final String PASS = "991005214";
 
     public static void main(String[] args) {
         Connection conn = null;
         Statement stmt = null;
         try {
             // 注册 JDBC 驱动
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(JDBC_DRIVER);
 
             // 打开链接
             System.out.println("连接数据库...");
@@ -43,9 +43,6 @@ public class MySQLDeme {
             rs.close();
             stmt.close();
             conn.close();
-        } catch (SQLException se) {
-            // 处理 JDBC 错误
-            se.printStackTrace();
         } catch (Exception e) {
             // 处理 Class.forName 错误
             e.printStackTrace();
@@ -54,6 +51,7 @@ public class MySQLDeme {
             try {
                 if (stmt != null) stmt.close();
             } catch (SQLException se2) {
+                se2.printStackTrace();
             }// 什么都不做
             try {
                 if (conn != null) conn.close();

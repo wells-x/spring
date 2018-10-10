@@ -1,15 +1,14 @@
 package hello.dao.model;
 
+
 public class Person {
-    private static String name;
-    private static int age;
+    //    private static String name;
+    private String name;
+    private int age;
 
     public Person(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
-    public static String getName() {
-        return name;
-    }
 }
