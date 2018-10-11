@@ -1,6 +1,6 @@
 package hello.dao;
 
-import hello.dao.model.UserList;
+import hello.model.UserList;
 import hello.user.controller.model.UserQuery;
 import org.apache.catalina.User;
 

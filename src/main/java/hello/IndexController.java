@@ -1,15 +1,16 @@
 package hello;
 
 import com.google.gson.Gson;
-import hello.dao.model.ConnectionPool;
-import hello.dao.model.Response;
-import hello.dao.model.User;
+import hello.model.ConnectionPool;
+import hello.model.Response;
+import hello.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,6 +37,7 @@ public class IndexController {
         Statement stmt = conn.createStatement();
         String sql = "SELECT id, name, account, password, email FROM users";
         ResultSet rs = stmt.executeQuery(sql);
+//        Array arr = rs.getArray("id");
         List<User> users = new ArrayList<>();
         while (rs.next()) {
             int id = rs.getInt("id");

@@ -1,4 +1,4 @@
-package hello.dao.model;
+package hello.model;
 
 public class Node {
 

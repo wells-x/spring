@@ -51,7 +51,7 @@ public class RestUtils {
             while (null != (line = reader.readLine()))
                 data.append(line);
         } catch (IOException e) {
-        } finally {
+
         }
         return data.toString();
     }
