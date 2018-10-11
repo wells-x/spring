@@ -3,7 +3,7 @@ package hello.dao.model;
 import java.sql.*;
 
 public class MySQLDeme {
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/java";
     private static final String USER = "wells";
     private static final String PASS = "991005214";

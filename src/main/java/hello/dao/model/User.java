@@ -10,10 +10,6 @@ public class User {
      */
     private String name;
     /**
-     * 手机号
-     */
-    private String phone;
-    /**
      * 账户
      */
     private String account;
@@ -26,10 +22,9 @@ public class User {
      */
     private String email;
 
-    public User(Long id, String name, String phone, String account, String password, String email) {
+    public User(Long id, String name, String account, String password, String email) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
         this.account = account;
         this.password = password;
         this.email = email;
