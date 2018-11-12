@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user", method = RequestMethod.GET)
 public class UserController {
     private final UserService userService;
 
@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all")
     public List findAll() {
         System.out.println("查询所有");
         List<User> users = userService.findAll();
@@ -29,12 +29,13 @@ public class UserController {
 
     @RequestMapping(value = "/{id}")
     public User find(@PathVariable("id") int id) {
+        System.out.println("用户 index： " + id);
         User user = userService.findById(id);
         System.out.println("用户： " + user);
         return user;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add")
     public String insertUser(@RequestBody User user) {
         System.out.println("新增用户");
         int result = userService.insertUser(user);
@@ -45,7 +46,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/modify", method = RequestMethod.PUT)
+    @RequestMapping(value = "/modify")
     public String updateUser(@RequestBody User user) {
         System.out.println("修改用户");
         int result = userService.updateUser(user);
@@ -57,7 +58,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete")
     public String deleteUser(@RequestParam("id") int id) {
         System.out.println("根据用户ID删除用户" + id);
         int result = userService.deleteUser(id);
@@ -66,6 +67,11 @@ public class UserController {
         } else {
             return "error";
         }
+    }
+    @RequestMapping(value = "/*")
+    public String noChoose(){
+        System.out.println("lll");
+        return "";
     }
 
 }
