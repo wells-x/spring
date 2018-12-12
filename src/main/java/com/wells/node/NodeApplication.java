@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 @ServletComponentScan(basePackages = {"com.wells.node.filter"})
-public class NodeApplication   extends SpringBootServletInitializer {
+public class NodeApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -16,7 +16,7 @@ public class NodeApplication   extends SpringBootServletInitializer {
     }
 
 
-    public static void main (String[]args){
+    public static void main(String[] args) {
         SpringApplication.run(NodeApplication.class, args);
     }
-    }
+}
