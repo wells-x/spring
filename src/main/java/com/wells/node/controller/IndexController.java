@@ -1,5 +1,6 @@
 package com.wells.node.controller;
 
+import com.wells.common.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,8 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
     @ResponseBody
     @RequestMapping("/")
-    public String index(){
+    public User index(){
+        User user = new User();
         System.out.println("index, /");
-        return "首页";
+        return user;
     }
 }

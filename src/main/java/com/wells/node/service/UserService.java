@@ -9,6 +9,8 @@ public interface UserService {
 
     User findById(int id);
 
+    User findByAccount(String account);
+
     int insertUser(User user);
 
     int updateUser(User user);

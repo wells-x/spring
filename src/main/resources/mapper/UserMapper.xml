@@ -25,6 +25,13 @@
         where id = #{id}
     </select>
 
+    <!-- 根据用户account查询用户信息 -->
+    <select id="findByAccount" resultMap="userMap" parameterType="java.lang.String">
+        select *
+        from node.users
+        where account = #{account}
+    </select>
+
     <!-- 新增用户 -->
     <insert id="insertUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
         insert into node.users (name, age, account, password, email)

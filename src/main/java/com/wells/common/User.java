@@ -51,8 +51,7 @@ public class User {
 
     @Override
     public String toString() {
-        String string = "User [userId=" + id + ", userName=" + name + ", userAge=" + age + ", userSex=" + account + ", email" + email + "]";
-        return string;
+        return String.format("User [userId=%d, userName=%s, userAge=%d, userSex=%s, email=%s]", id, name, age, account, email);
     }
 
     public User() {
@@ -61,7 +60,6 @@ public class User {
 
     public User(String name, int age, String account, String password, String email) {
         super();
-//        this.id = id;
         this.name = name;
         this.account = account;
         this.age = age;
