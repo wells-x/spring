@@ -22,6 +22,7 @@ public class UrlFilter implements Filter {
             servletRequest.getRequestDispatcher("/failed").forward(servletRequest, servletResponse);
         } else {
             System.out.println(servletResponse);
+            // 进行通过过滤
             filterChain.doFilter(servletRequest, servletResponse);
         }
 

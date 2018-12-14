@@ -21,40 +21,25 @@ public class LoginInterceptor implements HandlerInterceptor {
     long start = System.currentTimeMillis();
 
     @Override
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse httpServletResponse, Object o) throws Exception {
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) throws Exception {
         start = System.currentTimeMillis();
-        String requestURI = req.getRequestURI();
-        System.out.println("LoginInterceptor");
-        System.out.println(requestURI);
         String token = req.getHeader("token");
         if (token == null) {
-            /*httpServletResponse.setCharacterEncoding("UTF-8");
-            httpServletResponse.setContentType("application/json; charset=utf-8");
-            try (PrintWriter writer = httpServletResponse.getWriter()) {
-                Error error = new Error(BizExceptionEnum.ERROR_CREATE_DICT);
-                writer.print(error);
-                return false;
-
-            } catch (IOException e) {
-            }*/
             Error error = new Error(BizExceptionEnum.NO_LOGIN);
-            this.returnJson(httpServletResponse, JSON.toJSONString(error));
-
+            this.returnJson(res, JSON.toJSONString(error));
             return false;
         }
-        Long user_id = JwtToken.getAppUID(token);
-        System.out.println(user_id);
-//        req.
+        req.setAttribute("user_id", JwtToken.getAppUID(token));
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, ModelAndView modelAndView) throws Exception {
         System.out.println("Interceptor cost=" + (System.currentTimeMillis() - start));
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, Exception e) throws Exception {
     }
 
 
@@ -66,7 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             writer = response.getWriter();
             writer.print(json);
 
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         } finally {
             if (writer != null)
                 writer.close();
