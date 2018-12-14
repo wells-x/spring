@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages = {"com.wells.node.filter"})
+@ServletComponentScan(basePackages = {"com.wells.node.interceptor", "com.wells.node.filter",})
 public class NodeApplication extends SpringBootServletInitializer {
 
     @Override

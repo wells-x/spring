@@ -1,5 +1,7 @@
 package com.wells.common;
 
+import java.util.Objects;
+
 public class User {
 
     private Long id;
@@ -49,9 +51,13 @@ public class User {
         this.email = email;
     }
 
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
+    }
+
     @Override
     public String toString() {
-        return String.format("User [userId=%d, userName=%s, userAge=%d, userSex=%s, email=%s]", id, name, age, account, email);
+        return String.format("User [userId=%d, userName=%s, userAge=%d, userSex=%s, email=%s, password=%s]", id, name, age, account, email, password);
     }
 
     public User() {
@@ -66,5 +72,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
 
 }
