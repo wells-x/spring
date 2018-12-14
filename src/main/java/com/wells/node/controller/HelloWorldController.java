@@ -14,7 +14,8 @@ import java.util.Map;
 public class HelloWorldController {
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello(HttpServletRequest request, @RequestBody HashMap request2) {
+    public String hello(
+            HttpServletRequest request, @RequestBody HashMap request2) {
         System.out.println(request.getAttribute("user_id"));
         return "hello";
     }
