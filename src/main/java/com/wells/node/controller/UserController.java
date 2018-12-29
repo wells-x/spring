@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/user", method = RequestMethod.GET)
+@RequestMapping(value = "/user")
 public class UserController {
     private final UserService userService;
 
@@ -68,8 +68,9 @@ public class UserController {
             return "error";
         }
     }
+
     @RequestMapping(value = "/*")
-    public String noChoose(){
+    public String noChoose() {
         System.out.println("lll");
         return "";
     }

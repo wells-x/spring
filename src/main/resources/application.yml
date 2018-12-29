@@ -4,12 +4,13 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/node
-    username: root
-    password: 12345
+    url: jdbc:mysql://localhost:3306/java
+    username: java_scope
+    password: ho9*ES3rr%
 
 mybatis:
   #mapper.xml所在位置
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.wells.common
-mvc:
+
+

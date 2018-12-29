@@ -43,6 +43,10 @@ public class User {
         this.account = account;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -72,6 +76,4 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
-
 }
