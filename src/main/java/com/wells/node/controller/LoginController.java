@@ -31,7 +31,7 @@ public class LoginController {
      * @return 判断登录状态
      * @author wells
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/")
     @ResponseBody
     public AbstractResult login(@RequestBody HashMap request) throws Exception {
         Object account = request.get("account"), password = request.get("password");

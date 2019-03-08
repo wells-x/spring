@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/java
     username: java_scope
-    password: ho9*ES3rr%
+    password: wellstest1
 
 mybatis:
   #mapper.xml所在位置

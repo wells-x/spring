@@ -13,48 +13,45 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @program: node
- * @author: wells
- * @create: 2018/12/14
+ * node
+ *
+ * @author wells
+ * @date 2018/12/14
  */
+
 public class LoginInterceptor implements HandlerInterceptor {
-    long start = System.currentTimeMillis();
+    private long start;
 
     @Override
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) throws Exception {
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) {
         start = System.currentTimeMillis();
         String token = req.getHeader("token");
+        System.out.println(req.getRequestURI());
         if (token == null) {
             Error error = new Error(BizExceptionEnum.NO_LOGIN);
             this.returnJson(res, JSON.toJSONString(error));
             return false;
         }
-        req.setAttribute("user_id", JwtToken.getAppUID(token));
+//        req.setAttribute("user_id", JwtToken.getAppUID(token));
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, ModelAndView modelAndView) {
         System.out.println("Interceptor cost=" + (System.currentTimeMillis() - start));
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, Exception e) throws Exception {
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, Exception e) {
     }
 
 
-    private void returnJson(HttpServletResponse response, String json) throws Exception {
-        PrintWriter writer = null;
+    private void returnJson(HttpServletResponse response, String json) {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
-        try {
-            writer = response.getWriter();
+        try (PrintWriter writer = response.getWriter()) {
             writer.print(json);
-
         } catch (IOException ignored) {
-        } finally {
-            if (writer != null)
-                writer.close();
         }
     }
 
