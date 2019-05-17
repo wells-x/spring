@@ -32,7 +32,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             this.returnJson(res, JSON.toJSONString(error));
             return false;
         }
-//        req.setAttribute("user_id", JwtToken.getAppUID(token));
+        req.setAttribute("user_id", JwtToken.getAppUID(token));
         return true;
     }
 

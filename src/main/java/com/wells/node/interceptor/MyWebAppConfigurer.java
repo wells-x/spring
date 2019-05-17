@@ -57,7 +57,7 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         registry
                 .addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login", "/login/**")
+                .excludePathPatterns("/login/**", "/register/**", "/error/**")
         ;
     }
 }

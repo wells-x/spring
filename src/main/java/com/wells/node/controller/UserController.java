@@ -35,6 +35,14 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/{account}")
+    public User findByAccount(@PathVariable("account") String account) {
+        System.out.println("用户 index： " + account);
+        User user = userService.findByAccount(account);
+        System.out.println("用户： " + user);
+        return user;
+    }
+
     @RequestMapping(value = "/add")
     public String insertUser(@RequestBody User user) {
         System.out.println("新增用户");

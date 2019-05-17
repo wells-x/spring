@@ -31,10 +31,13 @@ public class LoginController {
      * @return 判断登录状态
      * @author wells
      */
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "")
     @ResponseBody
     public AbstractResult login(@RequestBody HashMap request) throws Exception {
         Object account = request.get("account"), password = request.get("password");
+        System.out.println(account);
+        System.out.println(password);
+        System.out.println(account);
         if (account == "" || account == null || password == "" || password == null) {
             return new Error(BizExceptionEnum.LOGIN_EMPTY);
         }
@@ -60,14 +63,15 @@ public class LoginController {
      * @return 判断登录状态
      * @author wells
      */
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @RequestMapping(value = "/check")
     @ResponseBody
-    public AbstractResult index(@RequestBody HashMap request) throws Exception {
+    public String index(@RequestBody HashMap request) throws Exception {
         String token = (String) request.get("token");
+        if (token == null) return request.toString();
         Long user_id = JwtToken.getAppUID(token);
         System.out.println(user_id);
 
-        return new Success<>();
+        return request.toString();
     }
 
 }

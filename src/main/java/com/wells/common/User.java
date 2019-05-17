@@ -68,12 +68,12 @@ public class User {
         super();
     }
 
-    public User(String name, int age, String account, String password, String email) {
+    public User( String account, String password) {
         super();
-        this.name = name;
+        this.name = "";
         this.account = account;
-        this.age = age;
+        this.age = 0;
         this.password = password;
-        this.email = email;
+        this.email = "";
     }
 }
