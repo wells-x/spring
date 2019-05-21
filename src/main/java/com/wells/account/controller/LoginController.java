@@ -1,4 +1,4 @@
-package com.wells.node.controller;
+package com.wells.account.controller;
 
 import com.wells.common.JwtToken;
 import com.wells.common.User;
@@ -6,7 +6,7 @@ import com.wells.common.exception.BizExceptionEnum;
 import com.wells.common.result.AbstractResult;
 import com.wells.common.result.Error;
 import com.wells.common.result.Success;
-import com.wells.node.service.UserService;
+import com.wells.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,20 +35,25 @@ public class LoginController {
     @ResponseBody
     public AbstractResult login(@RequestBody HashMap request) throws Exception {
         Object account = request.get("account"), password = request.get("password");
-        System.out.println(account);
-        System.out.println(password);
-        System.out.println(account);
+        System.out.println("account: " + account + "--- password: " + password);
         if (account == "" || account == null || password == "" || password == null) {
             return new Error(BizExceptionEnum.LOGIN_EMPTY);
         }
 
-        User user = userService.findByAccount((String) account);
+        User user;
+        try {
+            user = userService.findByAccount((String) account);
+        } catch (Exception e) {
+            System.out.println(e);
+            user = null;
+        }
+        System.out.println(user);
         if (user == null || !user.checkPassword((String) password)) {
             return new Error(BizExceptionEnum.LOGIN_ERROR);
         }
 
         String token = JwtToken.createToken(user.getId());
-        Map<String, Object> data = new HashMap<>();
+        Map data = new HashMap<>();
         data.put("user", user);
         data.put("token", token);
         System.out.println(data);

@@ -1,8 +1,8 @@
-package com.wells.node.service.impl;
+package com.wells.account.service.impl;
 
 import com.wells.common.User;
-import com.wells.node.dao.UserDao;
-import com.wells.node.service.UserService;
+import com.wells.account.dao.UserDao;
+import com.wells.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

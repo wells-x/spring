@@ -1,10 +1,12 @@
-package com.wells.node.service;
+package com.wells.account.dao;
 
 import com.wells.common.User;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-public interface UserService {
+@Mapper
+public interface UserDao {
     List<User> findAll();
 
     User findById(int id);

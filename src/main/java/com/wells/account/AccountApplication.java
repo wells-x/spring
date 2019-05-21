@@ -1,4 +1,4 @@
-package com.wells.node;
+package com.wells.account;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,14 +7,14 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages = {"com.wells.node.interceptor", "com.wells.node.filter",})
-public class NodeApplication extends SpringBootServletInitializer {
+@ServletComponentScan(basePackages = {"com.wells.account.interceptor", "com.wells.account.filter",})
+public class AccountApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(NodeApplication.class);
+        return builder.sources(AccountApplication.class);
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(NodeApplication.class, args);
+        SpringApplication.run(AccountApplication.class, args);
     }
 }

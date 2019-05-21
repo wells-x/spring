@@ -1,4 +1,4 @@
-package com.wells.node.service;
+package com.wells.account.service;
 
 import com.wells.common.User;
 

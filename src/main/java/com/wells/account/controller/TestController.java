@@ -1,4 +1,4 @@
-package com.wells.node.controller;
+package com.wells.account.controller;
 
 import com.wells.common.result.AbstractResult;
 import com.wells.common.result.Success;

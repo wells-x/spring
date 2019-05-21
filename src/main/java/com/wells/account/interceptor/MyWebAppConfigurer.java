@@ -1,4 +1,4 @@
-package com.wells.node.interceptor;
+package com.wells.account.interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
