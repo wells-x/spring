@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 /**
  * APP登录Token的生成和解析
  *
- * @program: node
+ * @program: account
  * @author: wells
  * @create: 2018/12/14
  */

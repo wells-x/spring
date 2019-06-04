@@ -1,4 +1,4 @@
-package com.wells.node;
+package com.wells.account;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

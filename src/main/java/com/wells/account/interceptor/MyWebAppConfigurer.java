@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.*;
 
 /**
- * @program: node
+ * @program: account
  * @author: wells
  * @create: 2018/12/14
  */

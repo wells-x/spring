@@ -2,11 +2,16 @@ package com.wells.account.controller;
 
 import com.wells.common.User;
 import com.wells.account.service.UserService;
+import com.wells.common.exception.BizExceptionEnum;
+import com.wells.common.result.AbstractResult;
+import com.wells.common.result.Error;
+import com.wells.common.result.Success;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.HashMap;
 
 @Controller
@@ -22,30 +27,40 @@ public class RegisterController {
 
     @RequestMapping(value = "")
     @ResponseBody
-    public HashMap<String, java.io.Serializable> registers(HttpServletRequest request) {
+    public AbstractResult registers(@RequestBody HashMap request) {
         System.out.println(request);
-        String account = request.getParameter("account");
-        String password = request.getParameter("password");
+//        String account = request.getParameter("account");
+//        String password = request.getParameter("password");
 
+        Object account = request.get("account"),
+                password = request.get("password"),
+                age = request.get("age"),
+                email = request.get("email"),
+                name = request.get("nickname");
+        System.out.println(account);
         HashMap<String, java.io.Serializable> data = new HashMap<>();
         if (password == null || account == null) {
             data.put("code", 400);
             data.put("msg", "必填项");
-            return data;
+            return new Error(BizExceptionEnum.REQUEST_NULL);
         }
         System.out.println(account);
-        User findUser = userService.findByAccount(account);
+        User findUser = userService.findByAccount((String) account);
         System.out.println("------------------");
         System.out.println(findUser);
         System.out.println("------------------");
         if (findUser != null) {
             data.put("code", 400);
             data.put("msg", "账号已存在");
-            return data;
+            return new Error(BizExceptionEnum.USER_ALREADY_REG);
         }
-        User user = new User(account, password);
+        User user = new User((String) account, (String) password);
+        user.setAge(Integer.valueOf((String) age));
+        user.setEmail((String) email);
+        user.setName((String) name);
         userService.insertUser(user);
         System.out.println(user);
-        return data;
+        data.put("msg", "注册成功");
+        return new Success<>(data);
     }
 }

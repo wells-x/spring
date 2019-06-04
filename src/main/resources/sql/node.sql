@@ -4,7 +4,7 @@ SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
---  Table structure for `node`
+--  Table structure for `account`
 -- ----------------------------
 CREATE TABLE `users` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
