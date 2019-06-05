@@ -2,10 +2,15 @@ package com.wells.account.controller;
 
 import com.wells.common.User;
 import com.wells.account.service.UserService;
+import com.wells.common.exception.BizExceptionEnum;
+import com.wells.common.result.AbstractResult;
+import com.wells.common.result.Success;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -18,29 +23,29 @@ public class UserController {
     }
 
     @RequestMapping(value = "/all")
-    public List findAll() {
+    public AbstractResult findAll() {
         System.out.println("查询所有");
         List<User> users = userService.findAll();
         for (User user : users) {
             System.out.println("用户： " + user);
         }
-        return users;
+        return new Success<>(users);
     }
 
     @RequestMapping(value = "/{id}")
-    public User find(@PathVariable("id") int id) {
+    public AbstractResult find(@PathVariable("id") int id) {
         System.out.println("用户 index： " + id);
         User user = userService.findById(id);
         System.out.println("用户： " + user);
-        return user;
+        return new Success<>(user);
     }
 
     @RequestMapping(value = "/{account}")
-    public User findByAccount(@PathVariable("account") String account) {
+    public AbstractResult findByAccount(@PathVariable("account") String account) {
         System.out.println("用户 index： " + account);
         User user = userService.findByAccount(account);
         System.out.println("用户： " + user);
-        return user;
+        return new Success<>(user);
     }
 
     @RequestMapping(value = "/add")

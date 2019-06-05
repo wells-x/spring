@@ -43,6 +43,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse res, Object o, Exception e) {
+        System.out.println(httpServletRequest);
+        System.out.println(httpServletRequest.getMethod() );
+        System.out.println(res);
+        System.out.println(res.getHeaderNames());
+        System.out.println(o);
     }
 
 
