@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         return userDao.findById(id);
     }
 
-    public User findByAccount(String account) {
+    public User findByAccount(String account) throws Exception {
         return userDao.findByAccount(account);
     }
 

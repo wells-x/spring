@@ -11,7 +11,7 @@ public interface UserDao {
 
     User findById(int id);
 
-    User findByAccount(String account);
+    User findByAccount(String account) throws Exception;
 
     int insertUser(User user);
 

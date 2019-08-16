@@ -11,6 +11,7 @@ import com.wells.common.exception.BusinessException;
  * @date 18/3/16.
  */
 public class Error extends AbstractResult {
+    protected String details;
 
     public Error(BusinessException ex) {
         this.code = ex.getCode();
@@ -20,6 +21,14 @@ public class Error extends AbstractResult {
     public Error(BizExceptionEnum exceptionEnum) {
         this.code = exceptionEnum.getCode();
         this.msg = exceptionEnum.getMsg();
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getDetails() {
+        return details;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class RegisterController {
 
     @RequestMapping(value = "")
     @ResponseBody
-    public AbstractResult registers(@RequestBody HashMap request) {
+    public AbstractResult registers(@RequestBody HashMap request) throws Exception{
         System.out.println(request);
 //        String account = request.getParameter("account");
 //        String password = request.getParameter("password");

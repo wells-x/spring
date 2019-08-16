@@ -3,14 +3,18 @@ package com.wells.account.controller;
 import com.wells.common.JwtToken;
 import com.wells.common.User;
 import com.wells.common.exception.BizExceptionEnum;
+import com.wells.common.exception.BusinessException;
 import com.wells.common.result.AbstractResult;
 import com.wells.common.result.Error;
 import com.wells.common.result.Success;
 import com.wells.account.service.UserService;
+import org.apache.ibatis.session.SqlSessionException;
+import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,16 +47,31 @@ public class LoginController {
         User user;
         try {
             user = userService.findByAccount((String) account);
+        } catch (SQLException e) {
+            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
+            error.setMsg(e.toString());
+            return error;
+        } catch (MyBatisSystemException e) {
+            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
+            error.setMsg("数据库报错");
+            error.setDetails(e.toString());
+            return error;
         } catch (Exception e) {
-            System.out.println(e);
-            user = null;
+            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
+            error.setMsg(e.toString());
+            return error;
         }
         System.out.println(user);
         if (user == null || !user.checkPassword((String) password)) {
             return new Error(BizExceptionEnum.LOGIN_ERROR);
         }
+        String token = null;
+        try {
+            token = JwtToken.createToken(user.getId());
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
 
-        String token = JwtToken.createToken(user.getId());
         Map data = new HashMap<>();
         data.put("user", user);
         data.put("token", token);

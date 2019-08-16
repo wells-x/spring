@@ -2,15 +2,11 @@ package com.wells.account.controller;
 
 import com.wells.common.User;
 import com.wells.account.service.UserService;
-import com.wells.common.exception.BizExceptionEnum;
 import com.wells.common.result.AbstractResult;
 import com.wells.common.result.Success;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -41,7 +37,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{account}")
-    public AbstractResult findByAccount(@PathVariable("account") String account) {
+    public AbstractResult findByAccount(@PathVariable("account") String account) throws Exception{
         System.out.println("用户 index： " + account);
         User user = userService.findByAccount(account);
         System.out.println("用户： " + user);
