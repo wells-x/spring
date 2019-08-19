@@ -30,7 +30,7 @@ public class Page<T> extends Success<List<T>> {
         }
     }
 
-    private class PageInside {
+    private static class PageInside {
 
         //当前页码
         private int pageNo = 1;

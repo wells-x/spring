@@ -47,10 +47,6 @@ public class LoginController {
         User user;
         try {
             user = userService.findByAccount((String) account);
-        } catch (SQLException e) {
-            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
-            error.setMsg(e.toString());
-            return error;
         } catch (MyBatisSystemException e) {
             Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
             error.setMsg("数据库报错");
@@ -69,7 +65,7 @@ public class LoginController {
         try {
             token = JwtToken.createToken(user.getId());
         } catch (Exception e) {
-            System.out.printf(e.getMessage());
+            System.out.print(e.getMessage());
         }
 
         Map data = new HashMap<>();

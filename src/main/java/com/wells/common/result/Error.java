@@ -11,7 +11,7 @@ import com.wells.common.exception.BusinessException;
  * @date 18/3/16.
  */
 public class Error extends AbstractResult {
-    protected String details;
+    private String details;
 
     public Error(BusinessException ex) {
         this.code = ex.getCode();
@@ -33,7 +33,6 @@ public class Error extends AbstractResult {
 
     @Override
     public String toString() {
-        String s = "{\"code\":" + this.code + ",\"msg\":\"" + this.msg + "\"}";
-        return s;
+        return "{\"code\":" + this.code + ",\"msg\":\"" + this.msg + "\"}";
     }
 }

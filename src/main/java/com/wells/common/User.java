@@ -61,14 +61,14 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User [userId=%d, userName=%s, userAge=%d, userSex=%s, email=%s, password=%s]", id, name, age, account, email, password);
+        return String.format("User [userId=%d, userName=%s, age=%d, account=%s, email=%s]", id, name, age, account, email);
     }
 
     public User() {
         super();
     }
 
-    public User( String account, String password) {
+    public User(String account, String password) {
         super();
         this.name = "";
         this.account = account;
