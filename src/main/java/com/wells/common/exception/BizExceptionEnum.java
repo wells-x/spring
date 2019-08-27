@@ -36,6 +36,7 @@ public enum BizExceptionEnum {
     NO_PERMISSION(HttpStatus.METHOD_NOT_ALLOWED, "权限异常", 608),
     REQUEST_INVALIDATE(HttpStatus.BAD_REQUEST, "请求数据格式不正确", 609),
     INVALID_KAPTCHA(HttpStatus.BAD_REQUEST, "验证码不正确", 610),
+    DB_CONNECT_EXCEPTION(HttpStatus.BAD_REQUEST, "数据库连接异常", 620),
 
     /**
      * 文件上传

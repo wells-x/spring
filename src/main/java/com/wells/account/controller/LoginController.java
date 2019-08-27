@@ -3,18 +3,15 @@ package com.wells.account.controller;
 import com.wells.common.JwtToken;
 import com.wells.common.User;
 import com.wells.common.exception.BizExceptionEnum;
-import com.wells.common.exception.BusinessException;
 import com.wells.common.result.AbstractResult;
 import com.wells.common.result.Error;
 import com.wells.common.result.Success;
 import com.wells.account.service.UserService;
-import org.apache.ibatis.session.SqlSessionException;
 import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,43 +34,35 @@ public class LoginController {
      */
     @RequestMapping(value = "")
     @ResponseBody
-    public AbstractResult login(@RequestBody HashMap request) throws Exception {
+    public AbstractResult login(@RequestBody HashMap request) {
         Object account = request.get("account"), password = request.get("password");
+        Error error;
+        try {
+            Map data = this.doLogin(account, password);
+            return new Success<>(data);
+        } catch (MyBatisSystemException e) {
+            error = new Error(BizExceptionEnum.DB_CONNECT_EXCEPTION);
+            error.setDetails(e.toString());
+        } catch (Exception e) {
+            error = new Error(BizExceptionEnum.LOGIN_ERROR);
+            error.setMsg(e.toString());
+        }
+        return error;
+    }
+
+    private Map doLogin(Object account, Object password) throws Exception {
         System.out.println("account: " + account + "--- password: " + password);
         if (account == "" || account == null || password == "" || password == null) {
-            return new Error(BizExceptionEnum.LOGIN_EMPTY);
+            new Error(BizExceptionEnum.LOGIN_EMPTY);
         }
 
-        User user;
-        try {
-            user = userService.findByAccount((String) account);
-        } catch (MyBatisSystemException e) {
-            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
-            error.setMsg("数据库报错");
-            error.setDetails(e.toString());
-            return error;
-        } catch (Exception e) {
-            Error error = new Error(BizExceptionEnum.LOGIN_ERROR);
-            error.setMsg(e.toString());
-            return error;
-        }
-        System.out.println(user);
-        if (user == null || !user.checkPassword((String) password)) {
-            return new Error(BizExceptionEnum.LOGIN_ERROR);
-        }
-        String token = null;
-        try {
-            token = JwtToken.createToken(user.getId());
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-        }
+        User user = userService.findByAccount((String) account);
 
-        Map data = new HashMap<>();
+        String token = JwtToken.createToken(user.getId());
+        Map<String, Object> data = new HashMap<>();
         data.put("user", user);
         data.put("token", token);
-        System.out.println(data);
-
-        return new Success<>(data);
+        return data;
     }
 
     /**
@@ -85,7 +74,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/check")
     @ResponseBody
-    public String index(@RequestBody HashMap request) throws Exception {
+    public String index(@RequestBody HashMap request) {
         String token = (String) request.get("token");
         if (token == null) return request.toString();
         Long user_id = JwtToken.getAppUID(token);
