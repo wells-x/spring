@@ -1,19 +1,19 @@
 package com.wells.account.controller;
 
 import com.wells.account.service.UserService;
+import com.wells.common.User;
 import javafx.application.Application;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.Assert.*;
+import javax.validation.constraints.AssertTrue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest
 public class LoginControllerTest {
 
     @Autowired
@@ -21,11 +21,11 @@ public class LoginControllerTest {
 
     @Test
     public void login() throws Exception {
-        String mockResult = "{\"number\":20}";
-
-       /* Mockito.when(
-
-        )*/
+        String userName = "wells";
+        String password = "123456";
+        User user = userService.findByAccount(userName);
+        System.out.println(user);
+        Assert.assertTrue(user.checkPassword(password));
     }
 
     @Test
