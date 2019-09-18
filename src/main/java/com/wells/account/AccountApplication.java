@@ -15,6 +15,8 @@ public class AccountApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
+        System.out.println("asdfasdf");
+
         SpringApplication.run(AccountApplication.class, args);
     }
 }

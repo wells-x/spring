@@ -28,7 +28,7 @@ public class UserController {
         return new Success<>(users);
     }
 
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/id/{id}")
     public AbstractResult find(@PathVariable("id") int id) {
         System.out.println("用户 index： " + id);
         User user = userService.findById(id);
@@ -36,7 +36,7 @@ public class UserController {
         return new Success<>(user);
     }
 
-    @RequestMapping(value = "/{account}")
+    @RequestMapping(value = "/account/{account}")
     public AbstractResult findByAccount(@PathVariable("account") String account) throws Exception{
         System.out.println("用户 index： " + account);
         User user = userService.findByAccount(account);

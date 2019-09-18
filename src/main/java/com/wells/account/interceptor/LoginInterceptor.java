@@ -27,7 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         start = System.currentTimeMillis();
         String token = req.getHeader("token");
         System.out.println(req.getRequestURI());
-        if (token == null) {
+        if (token == null || token.equals("")) {
             Error error = new Error(BizExceptionEnum.NO_LOGIN);
             this.returnJson(res, JSON.toJSONString(error));
             return false;
