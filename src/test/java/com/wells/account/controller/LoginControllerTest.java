@@ -16,17 +16,17 @@ import javax.validation.constraints.AssertTrue;
 @SpringBootTest
 public class LoginControllerTest {
 
-    @Autowired
-    private UserService userService;
-
-    @Test
-    public void login() throws Exception {
-        String userName = "wells";
-        String password = "123456";
-        User user = userService.findByAccount(userName);
-        System.out.println(user);
-        Assert.assertTrue(user.checkPassword(password));
-    }
+//    @Autowired
+//    private UserService userService;
+//
+//    @Test
+//    public void login() throws Exception {
+//        String userName = "wells";
+//        String password = "123456";
+//        User user = userService.findByAccount(userName);
+//        System.out.println(user);
+//        Assert.assertTrue(user.checkPassword(password));
+//    }
 
     @Test
     public void index() {
