@@ -23,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     private long start;
 
     @Override
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) {
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object os) {
         start = System.currentTimeMillis();
         String token = req.getHeader("token");
         System.out.println(req.getRequestURI());

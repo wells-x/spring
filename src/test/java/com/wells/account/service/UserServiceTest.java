@@ -16,25 +16,25 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
-    @Test
-    public void findAll() throws Exception {
-        System.out.println(userService);
-        List<User> list = null;
-        try {
-            list = userService.findAll();
-            System.out.println(list);
-            System.out.println(list.size());
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        Assert.assertEquals(list.size(), 5);
-    }
+//    @Test
+//    public void findAll() throws Exception {
+//        System.out.println(userService);
+//        List<User> list = null;
+//        try {
+//            list = userService.findAll();
+//            System.out.println(list);
+//            System.out.println(list.size());
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        Assert.assertEquals(list.size(), 5);
+//    }
 
-    @Test
-    public void findById() {
-        User user = userService.findById(1);
-        Assert.assertEquals(user.getAccount(), "wells");
-    }
+//    @Test
+//    public void findById() {
+//        User user = userService.findById(1);
+//        Assert.assertEquals(user.getAccount(), "wells");
+//    }
 
     @Test
     public void findByAccount() {
