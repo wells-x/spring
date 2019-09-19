@@ -64,3 +64,4 @@ public class RegisterController {
         return new Success<>(data);
     }
 }
+
