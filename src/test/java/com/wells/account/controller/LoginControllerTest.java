@@ -2,7 +2,6 @@ package com.wells.account.controller;
 
 import com.wells.account.service.UserService;
 import com.wells.common.User;
-import javafx.application.Application;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

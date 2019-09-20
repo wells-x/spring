@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 import java.util.HashMap;
 
 @Controller
@@ -27,19 +25,16 @@ public class RegisterController {
 
     @RequestMapping(value = "")
     @ResponseBody
-    public AbstractResult registers(@RequestBody HashMap request) throws Exception{
+    public AbstractResult registers(@RequestBody HashMap request) throws Exception {
         System.out.println(request);
-//        String account = request.getParameter("account");
-//        String password = request.getParameter("password");
-
         Object account = request.get("account"),
                 password = request.get("password"),
                 age = request.get("age"),
                 email = request.get("email"),
                 name = request.get("nickname");
         System.out.println(account);
-        HashMap<String, java.io.Serializable> data = new HashMap<>();
-        if (password == null || account == null) {
+        HashMap<String, Object> data = new HashMap<>();
+        if (password == null || account == null || password.equals("") || account.equals("")) {
             data.put("code", 400);
             data.put("msg", "必填项");
             return new Error(BizExceptionEnum.REQUEST_NULL);
@@ -55,7 +50,7 @@ public class RegisterController {
             return new Error(BizExceptionEnum.USER_ALREADY_REG);
         }
         User user = new User((String) account, (String) password);
-        user.setAge(Integer.valueOf((String) age));
+        user.setAge(Integer.parseInt((String) age));
         user.setEmail((String) email);
         user.setName((String) name);
         userService.insertUser(user);
