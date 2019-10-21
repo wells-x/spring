@@ -10,9 +10,16 @@ spring:
     username: java_scope
     password: wellstest1
 
+
+
 mybatis:
   #mapper.xml所在位置
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.wells.common
 
 
+pagehelper:
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
+  helper-dialect: mysql

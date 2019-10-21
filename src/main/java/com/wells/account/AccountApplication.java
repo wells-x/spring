@@ -16,8 +16,6 @@ public class AccountApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        System.out.println(JSON.toJSON(args));
-
         SpringApplication.run(AccountApplication.class, args);
     }
 }
