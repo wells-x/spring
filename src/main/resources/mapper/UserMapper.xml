@@ -14,14 +14,15 @@
 
     <!-- 查询所有用户信息 -->
     <select id="findAll" resultMap="userMap">
+        <include refid="USER_INFO"/>
+    </select>
+    <sql id="USER_INFO">
         select id, name, age, account, password, email
         from java.users
-    </select>
-
+    </sql>
     <!-- 根据用户ID查询用户信息 -->
     <select id="findById" resultMap="userMap" parameterType="java.lang.Integer">
-        select *
-        from java.users
+        <include refid="USER_INFO" />
         where id = #{id}
     </select>
 

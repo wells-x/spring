@@ -1,6 +1,6 @@
 package com.wells.account.controller;
 
-import com.wells.common.User;
+import com.wells.common.result.Success;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
     @ResponseBody
     @RequestMapping("/")
-    public User index(){
-        User user = new User();
-        System.out.println("index, /");
-        return user;
+    public Success index(){
+        return new Success();
     }
 }

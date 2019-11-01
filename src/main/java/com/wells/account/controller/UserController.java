@@ -23,14 +23,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/all")
+    @RequestMapping(value = "/all", method = RequestMethod.POST)
     public AbstractResult findAll(@RequestBody HashMap requestData) {
-        int pageNum = 1, pageSize = 2;
+        int pageNum = 1, pageSize = 10;
         System.out.println(requestData);
         try {
-            pageNum = (int) requestData.get("current");
-            pageSize = (int) requestData.get("pageSize");
-        } catch (Exception ignored) {
+            pageSize = Integer.parseInt(requestData.get("pageSize").toString());
+            if (pageSize < 2) pageSize = 2;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        try {
+            pageNum = Integer.parseInt(requestData.get("current").toString());
+        } catch (Exception i) {
+            System.out.println(i.toString());
         }
 
         System.out.println("查询所有");
@@ -108,7 +116,7 @@ public class UserController {
     @RequestMapping(value = "/*")
     public String noChoose() {
         System.out.println("lll");
-        return "";
+        return "{}";
     }
 
 }
